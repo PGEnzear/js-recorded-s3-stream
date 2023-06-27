@@ -77,7 +77,9 @@ app.post("/sendAudio", (req, res) => {
     })
 })
 
-app.use(express.static(path.join("..", "public", __dirname)))
+const PUBLIC = path.join(__dirname, "..", "public")
+
+app.use(express.static(PUBLIC))
 
 const startServer = async () => {
     return new Promise((resolve, reject) => {
