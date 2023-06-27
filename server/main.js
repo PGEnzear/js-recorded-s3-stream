@@ -72,7 +72,7 @@ app.post("/sendAudio", (req, res) => {
 
     const readableStream = bufferToStream(audio.data);
 
-    s3storage.uploadFile(`${s3ClientConfig.savePath}/"${filename}.${type}`, readableStream).then(r => {
+    s3storage.uploadFile(`${s3ClientConfig.savePath}/${filename}.${type}`, readableStream).then(r => {
         return Response(res, {"result": "sucessfully"})
     })
 })
