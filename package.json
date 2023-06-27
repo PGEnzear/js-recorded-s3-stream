@@ -1,0 +1,24 @@
+{
+  "name": "eto-discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "s3.js",
+  "scripts": {
+    "start": "node ./server/main.js",
+    "dev": "nodemon ./server/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
