@@ -23,7 +23,7 @@ app.use(cors());
 app.use(fileUpload())
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"))
+    res.sendFile(path.join(__dirname, "..", "public", "index.html"))
 })
 
 const s3ClientConfig = {
@@ -32,21 +32,23 @@ const s3ClientConfig = {
     savePath: process.env.S3_PATH
 }
 
+console.log(s3ClientConfig)
+
 const allowedAudioTypes = [ //OPTIONAL
     "wav"
 ]
 
 app.get("/listen", async (req, res) => {
-  let { id } = req.query
+    let { id } = req.query
 
-  if(!id) return Response(res, {"data": "Invalid photo", "status": 400})
+    if(!id) return Response(res, {"data": "Invalid photo", "status": 400})
 
-  res.setHeader('Content-Type', 'audio/wav; charset=utf-8');
-  res.setHeader('Transfer-Encoding', 'chunked');
+    res.setHeader('Content-Type', 'audio/wav; charset=utf-8');
+    res.setHeader('Transfer-Encoding', 'chunked');
 
-  let readStream = await s3storage.downloadFile(`${s3ClientConfig.savePath}/${id}`)
+    let readStream = await s3storage.downloadFile(`${s3ClientConfig.savePath}/${id}`)
 
-  readStream.pipe(res)
+    readStream.pipe(res)
 })
 
 app.post("/sendAudio", (req, res) => {
